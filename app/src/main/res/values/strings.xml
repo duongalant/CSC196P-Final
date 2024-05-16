@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">CSC196P-Final</string>
+    <string name="default_web_client_id" translatable="false">AIzaSyAb8CuXiTZojV-3ei8fPqWzqiAYRhlI-KU</string>
 </resources>

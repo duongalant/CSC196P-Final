@@ -23,9 +23,9 @@ class CreateActivity : AppCompatActivity() {
 
         auth = FirebaseAuth.getInstance()
 
-        createEmail = findViewById<TextView>(R.id.createEmail)
-        createPass = findViewById<TextView>(R.id.createPass)
-        createButton = findViewById<Button>(R.id.createButton)
+        createEmail = findViewById(R.id.createEmail)
+        createPass = findViewById(R.id.createPass)
+        createButton = findViewById(R.id.createButton)
 
         createButton.setOnClickListener() {
             val email = createEmail.text.toString().trim()
@@ -50,10 +50,8 @@ class CreateActivity : AppCompatActivity() {
                         // Account creation failed
                         val errorMessage = task.exception?.message ?: "Unknown error"
                         Toast.makeText(this, "Account creation failed: $errorMessage", Toast.LENGTH_LONG).show()
-                        Log.e("CreateActivity", "Account creation failed: $errorMessage")
                     }
                 }
-
         }
     }
 }

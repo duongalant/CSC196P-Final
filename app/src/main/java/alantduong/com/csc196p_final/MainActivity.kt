@@ -3,9 +3,9 @@ package alantduong.com.csc196p_final
 import android.os.Bundle
 import android.os.Handler
 import android.widget.Button
-import android.widget.RelativeLayout
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.constraintlayout.widget.ConstraintLayout
 import kotlin.random.Random
 // Firebase Implementation
 import com.google.firebase.firestore.ktx.firestore
@@ -17,12 +17,12 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var startButton: Button
     private lateinit var stopButton: Button
-    private lateinit var relativeLayout: RelativeLayout
+    private lateinit var mainLayout: ConstraintLayout
 
     // Runnable function
     private val runnable = Runnable {
         // Set the background on the screen
-        relativeLayout.setBackgroundResource(R.color.green)
+        mainLayout.setBackgroundResource(R.color.green)
 
         // Get the system time in millisecond when the screen background is set
         val startTime = System.currentTimeMillis()
@@ -54,7 +54,7 @@ class MainActivity : AppCompatActivity() {
                 }
 
             // Remove the background again
-            relativeLayout.setBackgroundResource(0)
+            mainLayout.setBackgroundResource(0)
         }
     }
 
@@ -62,7 +62,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        relativeLayout = findViewById(R.id.relativeLayout)
+        mainLayout = findViewById(R.id.main)
         startButton = findViewById(R.id.startButton)
         stopButton = findViewById(R.id.stopButton)
 

@@ -12,7 +12,12 @@
           "package_name": "alantduong.com.csc196p_final"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "397746594641-e83asajbe21c221780b0abhpobadn406.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyAb8CuXiTZojV-3ei8fPqWzqiAYRhlI-KU"
@@ -20,7 +25,12 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "397746594641-e83asajbe21c221780b0abhpobadn406.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     }
