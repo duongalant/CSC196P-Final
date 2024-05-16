@@ -27,4 +27,5 @@ class InstructionsActivity : AppCompatActivity() {
             finish()
         }
     }
+
 }
