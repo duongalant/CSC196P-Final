@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "397746594641",
+    "project_id": "csc196p-final",
+    "storage_bucket": "csc196p-final.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:397746594641:android:3a8345e67c404babbca970",
+        "android_client_info": {
+          "package_name": "alantduong.com.csc196p_final"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAb8CuXiTZojV-3ei8fPqWzqiAYRhlI-KU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

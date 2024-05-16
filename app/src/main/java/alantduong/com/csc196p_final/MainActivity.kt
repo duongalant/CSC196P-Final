@@ -7,8 +7,13 @@ import android.widget.RelativeLayout
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import kotlin.random.Random
+// Firebase Implementation
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 
 class MainActivity : AppCompatActivity() {
+    // Firebase database variable
+    val db = Firebase.firestore
 
     private lateinit var startButton: Button
     private lateinit var stopButton: Button
@@ -20,19 +25,33 @@ class MainActivity : AppCompatActivity() {
         relativeLayout.setBackgroundResource(R.color.green)
 
         // Get the system time in millisecond when the screen background is set
-        val time = System.currentTimeMillis()
+        val startTime = System.currentTimeMillis()
 
         // Function when stop button is clicked
         stopButton.setOnClickListener {
-            // get the system time in millisecond when the stop button is clicked
-            val time1 = System.currentTimeMillis()
-
+            // Get the system time in millisecond when the stop button is clicked
+            val endTime = System.currentTimeMillis()
+            val reflexTime = endTime - startTime
             // Display reflex time in toast message
             Toast.makeText(
                 applicationContext,
-                "Your reflex time is: ${time1 - time}ms",
+                "Your reflex time is: ${reflexTime}ms",
                 Toast.LENGTH_LONG
             ).show()
+
+            // Save score to Firebase
+            val scoreData = hashMapOf(
+                "reflexTime" to reflexTime
+            )
+            db.collection("scores")
+                .add(scoreData)
+                .addOnSuccessListener { documentReference ->
+                    Toast.makeText(
+                        applicationContext,
+                        "Score saved with ID: ${documentReference.id}",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
 
             // Remove the background again
             relativeLayout.setBackgroundResource(0)
