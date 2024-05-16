@@ -63,11 +63,7 @@ class MainActivity : AppCompatActivity() {
             scoreCount++
 
             // Display reflex time in toast message
-            Toast.makeText(
-                applicationContext,
-                "Your reflex time is: ${reflexTime}ms",
-                Toast.LENGTH_LONG
-            ).show()
+            Toast.makeText(applicationContext, "Your reflex time is: ${reflexTime}ms", Toast.LENGTH_SHORT).show()
 
             // If 5 scores have been collected, calculate the average and store it in Firebase
             if (scoreCount >= 5) {

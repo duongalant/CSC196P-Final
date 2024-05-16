@@ -32,7 +32,7 @@ class ResultsActivity : AppCompatActivity()  {
 
         db.collection("scores")
             .orderBy("averageReflexTime", Query.Direction.ASCENDING)
-            .limit(3)
+            .limit(7)
             .get()
             .addOnSuccessListener { documents ->
                 val highScores = StringBuilder()

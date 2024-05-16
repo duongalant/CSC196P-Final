@@ -51,9 +51,9 @@
         android:id="@+id/tryButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="144dp"
-        android:layout_marginTop="532dp"
-        android:text="Try Again?"
+        android:layout_marginStart="148dp"
+        android:layout_marginTop="536dp"
+        android:text="Try Again"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -72,7 +72,7 @@
         android:id="@+id/highScoreTextView"
         android:layout_width="wrap_content"
         android:layout_height="150dp"
-        android:layout_marginStart="112dp"
+        android:layout_marginStart="100dp"
         android:layout_marginTop="10dp"
         android:visibility="visible"
         app:layout_constraintStart_toStartOf="parent"
