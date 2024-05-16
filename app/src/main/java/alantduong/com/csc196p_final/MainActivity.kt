@@ -120,4 +120,5 @@ class MainActivity : AppCompatActivity() {
             mainLayout.setBackgroundResource(0)
         }
     }
+
 }

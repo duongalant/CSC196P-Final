@@ -24,7 +24,7 @@ class InstructionsActivity : AppCompatActivity() {
 
         scaredButton.setOnClickListener {
             // Exit the game
-            finish()
+            finishAffinity()
         }
     }
 
