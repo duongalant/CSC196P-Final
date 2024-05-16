@@ -1,6 +1,8 @@
 package alantduong.com.csc196p_final
 
+import android.content.Context
 import android.content.Intent
+import android.net.ConnectivityManager
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
@@ -45,8 +47,20 @@ class TitleActivity : AppCompatActivity() {
 
         googleSignInClient = GoogleSignIn.getClient(this, gso)
 
+        // Check WiFi connectivity when the activity is created
+        if (isConnectedToWifi()) {
+            Toast.makeText(this, "Great! You're connected to WiFi.", Toast.LENGTH_LONG).show()
+        } else {
+            Toast.makeText(this, "Please connect to WiFi to play the game.", Toast.LENGTH_LONG).show()
+        }
+
         ssoButton.setOnClickListener {
-            signInWithGoogle()
+            if (isConnectedToWifi()) {
+                signInWithGoogle()
+            }
+            else {
+                Toast.makeText(this, "Please connect to WiFi to sign in with Google.", Toast.LENGTH_LONG).show()
+            }
         }
 
         loginButton.setOnClickListener {
@@ -63,6 +77,12 @@ class TitleActivity : AppCompatActivity() {
                 loginUser(email, pass)
             }
         }
+    }
+
+    private fun isConnectedToWifi(): Boolean {
+        val connectivityManager = getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        val networkInfo = connectivityManager.activeNetworkInfo
+        return networkInfo != null && networkInfo.type == ConnectivityManager.TYPE_WIFI
     }
 
     private fun loginUser(email: String, pass: String) {

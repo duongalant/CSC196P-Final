@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.ktx.firestore
@@ -15,6 +16,8 @@ class ResultsActivity : AppCompatActivity()  {
     private lateinit var highScoreTextView: TextView
     private lateinit var tryButton: Button
     private lateinit var exitButton: Button
+    private lateinit var deleteButton: Button
+    private var deleteButtonClicked = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,6 +26,7 @@ class ResultsActivity : AppCompatActivity()  {
         val db = Firebase.firestore
         tryButton = findViewById(R.id.tryButton)
         exitButton = findViewById(R.id.exitButton)
+        deleteButton = findViewById(R.id.deleteButton)
 
         highScoreTextView = findViewById(R.id.highScoreTextView)
 
@@ -61,6 +65,44 @@ class ResultsActivity : AppCompatActivity()  {
             // Exit the game
             finishAffinity()
         }
+
+        deleteButton.setOnClickListener {
+            if (!deleteButtonClicked) {
+                deleteButtonClicked = true
+                deleteMostRecentScore()
+            } else {
+                Toast.makeText(this, "You've already deleted your score!", Toast.LENGTH_LONG).show()
+            }
+        }
+    }
+
+    private fun deleteMostRecentScore() {
+        val scoresRef = Firebase.firestore.collection("scores")
+
+        // Query for the most recent score document
+        scoresRef.orderBy("timestamp", Query.Direction.DESCENDING)
+            .limit(1)
+            .get()
+            .addOnSuccessListener { querySnapshot ->
+                // Check if there are any documents returned
+                if (!querySnapshot.isEmpty) {
+                    // Delete the most recent score document
+                    val document = querySnapshot.documents[0]
+                    document.reference.delete()
+                        .addOnSuccessListener {
+                            Toast.makeText(this, "This score has been removed from the database.", Toast.LENGTH_LONG).show()
+                        }
+                        .addOnFailureListener { e ->
+                            Toast.makeText(this, "Sorry, there was an issue removing this score.", Toast.LENGTH_LONG).show()
+                        }
+                } else {
+                    Toast.makeText(this, "Sorry for the confusion, this score was never saved.", Toast.LENGTH_LONG).show()
+                }
+            }
+            .addOnFailureListener { e ->
+                Toast.makeText(this, "Sorry, there was an issue accessing the database.", Toast.LENGTH_LONG).show()
+                deleteButtonClicked = false
+            }
     }
 
 }

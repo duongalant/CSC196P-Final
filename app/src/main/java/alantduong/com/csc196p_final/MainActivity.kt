@@ -8,6 +8,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.firestore.FieldValue
 import kotlin.random.Random
 // Firebase Implementation
 import com.google.firebase.firestore.ktx.firestore
@@ -77,7 +78,8 @@ class MainActivity : AppCompatActivity() {
                 if (userEmail != null) {
                     val scoreData = hashMapOf(
                         "email" to userEmail,
-                        "averageReflexTime" to averageReflexTime
+                        "averageReflexTime" to averageReflexTime,
+                        "timestamp" to FieldValue.serverTimestamp()
                     )
                     db.collection("scores")
                         .add(scoreData)
